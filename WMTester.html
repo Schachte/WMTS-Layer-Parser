@@ -14,6 +14,7 @@
 <script>
     var map;
 
+    // Public test data
     WMTS_TEST_URLS = [
         'https://openlayers.org/en/v4.6.5/examples/data/WMTSCapabilities.xml',
         'https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/WMTS/',
@@ -24,26 +25,28 @@
         'https://demo.boundlessgeo.com/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities'
     ]
 
-    function WMS() {
-        // var parser = new ol.format.WMSCapabilities();
-        // console.log("WMS");
-        // fetch('https://demo.boundlessgeo.com/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities').then(function(response) {
-        //   console.log("Retrieved All Layers from Endpoint")
-        //   return response.text();
-        // }).then(function(text) {
-        //   var result = parser.read(text);
-        //   result = result.Capability.Layer.Layer;
-        //   result.forEach((layer, index) => {
-        //     console.log("------------------------\n")
-        //     console.log(`Layer ${index}:`);
-        //     console.log(layer.Name)
-        //     console.log(layer.CRS)
-        //   })
-        // });
+    // Demonstrates layer parsing for WMS endpoints
+    function testWMS() {
+        var parser = new ol.format.WMSCapabilities();
+        console.log("WMS");
+        fetch('https://demo.boundlessgeo.com/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities').then(function(response) {
+          console.log("Retrieved All Layers from Endpoint")
+          return response.text();
+        }).then(function(text) {
+          var result = parser.read(text);
+          result = result.Capability.Layer.Layer;
+          result.forEach((layer, index) => {
+            console.log("------------------------\n")
+            console.log(`Layer ${index}:`);
+            console.log(layer.Name)
+            console.log(layer.CRS)
+          })
+        });
     }
 
     var mapParser = new ol.format.WMTSCapabilities();
 
+    // Demonstrates layer parsing for WMT endpoints
     fetch(WMTS_TEST_URLS[0]).then(function (response) {
 
         // Grab all the layers from the initial endpoint on the metacard
