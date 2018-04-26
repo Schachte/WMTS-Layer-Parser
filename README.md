@@ -1,4 +1,4 @@
-# WMTS/WMS Dynamic Layer Parser
+# WMTS/WMS Dynamic Layer Parser Demo
 
 Test bed demonstrating dynamic layer parsing of WMS/WMTS XML Response data from OGC getCapabilities specification.
 
